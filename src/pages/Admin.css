@@ -1,0 +1,309 @@
+.dashboard-container {
+  background-color: #000;
+  min-height: 100vh;
+  padding: 20px;
+  color: white;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.neon-text {
+  color: #39FF14;
+  font-size: 2rem;
+  font-weight: 900;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+}
+
+/* Cuadrícula responsiva para las 7 canchas */
+.courts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+  margin-bottom: 100px; /* Espacio para el footer fijo */
+}
+
+.court-card {
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  padding: 15px;
+  position: relative;
+  border: 1px solid #333;
+  transition: transform 0.2s;
+}
+
+.court-number {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #39FF14;
+  opacity: 0.5;
+}
+
+.team {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 10px 0;
+}
+
+.player-slot {
+  background: #262626;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.vs-divider {
+  text-align: center;
+  font-size: 0.7rem;
+  color: #666;
+  font-weight: bold;
+}
+
+.win-btn {
+  background: transparent;
+  border: 1px solid #444;
+  color: #aaa;
+  border-radius: 4px;
+  padding: 4px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.win-btn:hover {
+  border-color: #39FF14;
+  color: #39FF14;
+}
+
+/* Footer Fijo */
+/* .admin-actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+} */
+
+.admin-actions {
+  display: flex;
+  justify-content: center; /* Esto es lo que los centra horizontalmente */
+  align-items: center;
+  gap: 15px; /* Espacio entre los botones */
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+
+/* Regla para celulares: Si no caben de lado a lado, los apilamos */
+@media (max-width: 480px) {
+  .admin-actions {
+    flex-direction: column;
+    padding: 15px;
+  }
+  
+  .action-btn {
+    width: 100%; /* Para que en celular ocupen todo el ancho y se vean parejitos */
+  }
+}
+
+.action-btn {
+  padding: 15px 30px;
+  border-radius: 50px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.action-btn.primary {
+  background: #39FF14;
+  color: black;
+}
+
+.action-btn.secondary {
+  background: #f3ae4b;
+  color: black;
+}
+
+.win-btn.active {
+  background-color: #39FF14;
+  color: black;
+  border-color: #39FF14;
+  font-weight: bold;
+}
+
+.winner-selected .player-slot {
+  border: 1px solid #39FF14;
+}
+
+.players-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.player-slot {
+  background: #262626;
+  padding: 6px;
+  border-radius: 6px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1; /* Para que ambos jugadores ocupen la mitad del espacio */
+}
+
+.player-id {
+  color: #39FF14; /* Tu verde fosforíloco */
+  font-size: 0.65rem;
+  font-weight: 900;
+  margin-bottom: 2px;
+}
+
+.player-name {
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* ===== MENÚ LATERAL HAMBURGUESA ===== */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 99;
+  backdrop-filter: blur(2px);
+}
+
+.sidebar-menu {
+  position: fixed;
+  top: 0;
+  right: -280px; /* Escondido por defecto fuera de la pantalla */
+  width: 250px;
+  height: 100vh;
+  background: #111;
+  border-left: 1px solid #222;
+  z-index: 100;
+  transition: right 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+}
+
+.sidebar-menu.open {
+  right: 0; /* Al agregar esta clase, el menú se desliza hacia adentro */
+}
+
+.close-menu-btn {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-bottom: 30px;
+  padding: 5px 10px;
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: 1; /* Permite que el contenedor crezca */
+  padding-bottom: 40px;
+}
+
+.menu-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 10px 0;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.menu-links a:hover {
+  color: #39FF14;
+  border-bottom: 1px solid #39FF14;
+  padding-left: 10px; /* Pequeño efecto de movimiento */
+}
+
+.menu-spacer {
+  margin-top: auto;
+  height: 20px;
+}
+
+.menu-links .logout-link {
+  color: #ff4444;
+  margin-bottom: 20px; /* Separación extra del borde inferior */
+  padding: 15px 0;    /* Área de clic más grande y cómoda */
+}
+
+.menu-links .logout-link:hover {
+  color: #ff6666;
+  border-bottom: 1px solid #ff6666;
+}
+
+
+
+.btn-menu {
+  background: transparent;
+  border: none;
+  color: white; /* O tu color neón: #39FF14 si prefieres */
+  font-size: 2rem; /* Tamaño grande y cómodo para el dedo */
+  cursor: pointer;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.btn-menu:active {
+  transform: scale(0.9); /* Pequeña animación al picarle */
+}
+
+/* Asegurar que el header del Admin ponga el texto a la izquierda y el menú a la derecha */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 15px 20px;
+  box-sizing: border-box;
+}
+
+.court-card { 
+  padding-bottom: 30px; /* Espacio entre los jugadores y la línea */
+  margin-bottom: 30px; /* Espacio entre la línea y la siguiente cancha */
+}
+
+.court-card:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.court-number {
+  margin-bottom: 20px; /* Separa el título de la lista de jugadores */
+  color: #39FF14; /* Un toque neón para resaltar el número */
+}

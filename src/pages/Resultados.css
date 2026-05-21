@@ -1,0 +1,264 @@
+.results-container {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+.title-resultados {
+  font-size: 2.5rem;
+  margin-bottom: 5px;
+  text-align: center;
+  z-index: 2;
+}
+
+.subtitle-resultados {
+  color: #888;
+  margin-bottom: 40px;
+  z-index: 2;
+}
+
+/* ============================
+         EL PODIO
+============================ */
+.podium-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 15px;
+  margin-bottom: 50px;
+  height: 250px;
+  z-index: 2;
+}
+
+.podium-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+}
+
+.podium-avatar {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  background: #111;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.podium-name {
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.winner-name {
+  color: #FFD700;
+  font-size: 1.1rem;
+}
+
+.podium-pts {
+  color: #aaa;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+.podium-block {
+  width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 10px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #000;
+  box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+}
+
+/* Alturas y Colores del Podio */
+.block-1 {
+  height: 120px;
+  background: linear-gradient(to top, #B8860B, #FFD700);
+}
+
+.block-2 {
+  height: 80px;
+  background: linear-gradient(to top, #808080, #C0C0C0);
+}
+
+.block-3 {
+  height: 50px;
+  background: linear-gradient(to top, #8B4513, #CD7F32);
+}
+
+/* Brillos de las medallas */
+.gold-glow { border: 2px solid #FFD700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.4); }
+.silver-glow { border: 2px solid #C0C0C0; box-shadow: 0 0 15px rgba(192, 192, 192, 0.4); }
+.bronze-glow { border: 2px solid #CD7F32; box-shadow: 0 0 15px rgba(205, 127, 50, 0.4); }
+
+/* ============================
+    TABLA DE LOS MORTALES
+============================ */
+.table-wrapper {
+  width: 100%;
+  max-width: 600px;
+  background: #111;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid #222;
+  z-index: 2;
+  margin-bottom: 40px;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+  text-align: left;
+}
+
+.results-table th {
+  background: #1a1a1a;
+  padding: 15px;
+  font-size: 0.8rem;
+  color: #888; /*39FF14*/
+  text-transform: uppercase;
+}
+
+.results-table td {
+  padding: 15px;
+  border-bottom: 1px solid #222;
+  font-size: 0.9rem;
+}
+
+.pos-col {
+  color: #39FF14; /*888*/
+  font-weight: bold;
+  width: 50px;
+}
+
+.id-col {
+  color: #444;
+  font-size: 0.7rem;
+  margin-left: 10px;
+}
+
+.points-col {
+  text-align: right;
+  font-weight: 900;
+  color: #00f3ff;
+}
+
+.return-btn {
+  margin-top: 20px;
+  z-index: 2;
+  padding: 15px 40px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+}
+
+/* ==========================================
+   1. BOTÓN IA (Generar Crónica)
+========================================== */
+.ia-btn {
+  width: 100%;
+  padding: 14px 22px;
+  margin-bottom: 30px;
+  background: linear-gradient(45deg, #8a2be2, #4b0082); /* Degradado morado */
+  color: white;
+  border: 2px solid #9370db;
+  border-radius: 30px;
+  font-weight: 800;
+  font-size: 1.0rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+  letter-spacing: 1px;
+  margin-top: 15px;
+}
+
+.ia-btn:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 25px rgba(138, 43, 226, 0.8);
+  background: linear-gradient(45deg, #9932cc, #8a2be2);
+}
+
+.ia-btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+/* ==========================================
+   2. BOTÓN COPIAR WHATSAPP (y su éxito)
+========================================== */
+.copy-btn {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 30px;
+  background: transparent;
+  color: #00f3ff;
+  border: 2px solid #00f3ff;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 15px;
+}
+
+.copy-btn:hover {
+  background: #00f3ff;
+  color: #000;
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+}
+
+/* ESTA ES LA MAGIA CUANDO LE DAN CLIC */
+.copy-btn.copiado-success {
+  background: #39FF14;
+  color: #000;
+  border-color: #39FF14;
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.6);
+  transform: scale(1.02);
+}
+
+/* ==========================================
+   3. BOTÓN CERRAR JORNADA Y VOLVER
+========================================== */
+.return-btn {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding: 15px 40px;
+  background: transparent;
+  color: #ff0055; /* Rosa/Rojo Neón */
+  border: 2px solid #ff0055;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  z-index: 2; /* Para que quede por encima del fondo */
+}
+
+.return-btn:hover {
+  background: #ff0055;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
+  transform: translateY(-2px);
+}

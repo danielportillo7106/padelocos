@@ -1,0 +1,218 @@
+.registro-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #000;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* --- MAGIA RESPONSIVA AQUÍ --- */
+.registro-layout {
+  display: flex;
+  flex-direction: column; /* En celular se apilan */
+  gap: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (min-width: 768px) {
+  .registro-layout {
+    flex-direction: row; /* En Desktop se ponen lado a lado */
+    max-width: 800px;    /* Se hace más ancho para que quepan ambos */
+    align-items: stretch; /* Ambas cajas toman la misma altura */
+  }
+
+  .registro-box, .jugadores-list-box {
+    flex: 1; /* Se reparten el espacio al 50/50 */
+  }
+}
+
+/* --- TUS ESTILOS ORIGINALES --- */
+.registro-box {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.registro-title {
+  color: white;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 1.8rem;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+  letter-spacing: 2px;
+}
+
+.registro-subtitle {
+  color: #888;
+  margin-top: 10px;
+  margin-bottom: 35px;
+  font-size: 0.95rem;
+}
+
+.registro-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.registro-input {
+  width: 100%;
+  padding: 16px 20px;
+  background-color: #0a0a0a;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 30px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.registro-input:focus {
+  outline: none;
+  border-color: #00f3ff;
+  box-shadow: 0 0 12px rgba(0, 243, 255, 0.2);
+}
+
+.registro-btn {
+  align-self: center; /* Lo centra en lugar de estirarlo */
+  padding: 10px 30px; /* Redujimos el grosor */
+  background-color: transparent;
+  color: #00f3ff;
+  border: 2px solid #00f3ff;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 0.95rem; /* Letra un poco más pequeña */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+
+.registro-btn:hover:not(:disabled) {
+  background-color: #00f3ff;
+  color: #000;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+}
+
+.registro-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* --- LA CAJA DE LISTA --- */
+.jugadores-list-box {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 243, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.lista-title {
+  color: white;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 1.4rem; /* Un poco más chico que el título principal para mantener jerarquía */
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.3); /* Mismo efecto neón */
+  letter-spacing: 1px;
+}
+
+.lista-scroll {
+  flex: 1;
+  max-height: 250px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-right: 5px; 
+}
+
+.lista-scroll::-webkit-scrollbar { width: 6px; }
+.lista-scroll::-webkit-scrollbar-track { background: #111; }
+.lista-scroll::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+
+.jugador-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1a1a1a;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #2a2a2a;
+}
+
+.jugador-nombre {
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
+.btn-baja {
+  background: transparent;
+  border: 1px solid #ff4444;
+  color: #ff4444;
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+  font-weight: bold;
+}
+
+.btn-baja:hover {
+  background: rgba(255, 68, 68, 0.15);
+  color: #ff0000;
+}
+
+.empty-msg {
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+  margin: auto; /* Centra el mensaje si está vacío */
+}
+
+.back-btn {
+  margin-top: 30px;
+  background: transparent;
+  border: none;
+  color: #666;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+  text-align: center;
+}
+
+.back-btn:hover {
+  color: #fff;
+}
+
+.jugador-info-group {
+  display: flex;
+  align-items: baseline; /* Alinea los textos a la misma altura */
+  gap: 10px;
+}
+
+.jugador-id {
+  color: #666; /* Grisáceo elegante */
+  font-size: 0.75rem;
+  font-style: italic;
+  font-weight: normal;
+}

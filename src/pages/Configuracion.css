@@ -1,0 +1,170 @@
+.config-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #000;
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.config-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.counter {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background: #222;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-top: 10px;
+  border: 1px solid #444;
+}
+
+.counter.ready {
+  color: #000;
+  background: #39FF14;
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+}
+
+.draft-grid {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+  flex-grow: 1;
+  overflow: hidden; /* Para que las listas scrolleen internamente */
+}
+
+.draft-column {
+  flex: 1;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.draft-column h2 {
+  font-size: 1.1rem;
+  text-align: center;
+  color: #888;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.player-list {
+  flex-grow: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 60vh; /* Limita la altura para scrollear */
+}
+
+.draft-card {
+  display: flex;
+  justify-content: space-between;
+  background: #222;
+  padding: 12px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.draft-card:hover {
+  background: #333;
+}
+
+.draft-card.active {
+  background: rgba(57, 255, 20, 0.1);
+  border: 1px solid #39FF14;
+  color: #39FF14;
+}
+
+.add-btn { color: #888; font-weight: bold; }
+.remove-btn { color: #ff4444; font-weight: bold; }
+.empty-msg { text-align: center; color: #555; margin-top: 20px; }
+
+.config-footer {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+button.disabled {
+  background: #333;
+  color: #666;
+  border-color: #333;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+  .draft-grid {
+    flex-direction: column;
+  }
+  .player-list {
+    max-height: 30vh;
+  }
+}
+
+.search-box {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 15px;
+  background: #222;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.9rem;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #39FF14;
+  box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+  background: #2a2a2a;
+}
+
+/* Para que el buscador no se mueva al hacer scroll en la lista */
+.draft-column {
+  max-height: 80vh; /* Ajusta según necesites */
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-rey {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(45deg, #FFD700, #FFA500); /* Degradado dorado */
+  color: #000;
+  border: none;
+  border-radius: 30px;
+  font-weight: 900;
+  font-size: 1.1rem;
+  margin-top: 25px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.btn-rey:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+}

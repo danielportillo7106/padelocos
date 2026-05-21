@@ -1,0 +1,141 @@
+/* --- BOTÓN DE HAMBURGUESA FLOTANTE --- */
+.global-menu-button {
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  background: rgba(17, 17, 17, 0.8);
+  border: 1px solid #333;
+  border-radius: 12px;
+  padding: 8px;
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+/* Efecto elegante sin neón */
+.global-menu-button:hover {
+  background: rgba(255, 255, 255, 0.1); 
+  border-color: #666;
+  transform: scale(1.05);
+}
+
+.hamburger-svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* --- PANEL DEL MENÚ LATERAL --- */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%; /* Lo escondemos fuera de la pantalla a la derecha */
+  width: 280px;
+  height: 100vh;
+  background-color: #0a0a0a;
+  border-left: 1px solid #222;
+  z-index: 10000; /* Más alto que la hamburguesa */
+  transition: right 0.3s ease-in-out; /* Animación suave */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: -5px 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Cuando se abre, lo movemos al borde derecho */
+.sidebar.open {
+  right: 0; 
+}
+
+/* Botón de cerrar "X" */
+.close-btn {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 5px 12px;
+  transition: all 0.2s;
+}
+
+.close-btn:hover {
+  background: #333;
+}
+
+/* Título y links del Menú */
+.sidebar-title {
+  color: #39FF14; /* Este sí es neón para mantener la identidad */
+  text-align: center;
+  font-style: italic;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-grow: 1;
+}
+
+.sidebar-links button {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  color: white;
+  padding: 15px;
+  font-size: 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sidebar-links button:hover {
+  background: #2a2a2a;
+  border-color: #555;
+  transform: translateX(5px); /* Efecto pro: se mueve un poquito a la derecha al hacer hover */
+}
+
+/* Footer y botón de cerrar sesión */
+.sidebar-footer {
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.logout-link {
+  width: 100%;
+  background: transparent;
+  border: 1px solid #ff4444;
+  color: #ff4444;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logout-link:hover {
+  background: rgba(255, 68, 68, 0.1);
+}
+
+@media (max-width: 768px) {
+  /* Busca la clase principal de tu menú lateral */
+  .sidebar { 
+    padding-bottom: 100px; /* Levanta todo el contenido */
+    overflow-y: auto; /* Por si la pantalla es muy chaparrita, que te deje scrollear */
+  }
+
+  /* Busca la clase de tu botón de cerrar sesión */
+  .logout-link {
+    margin-bottom: 30px; /* Lo despega del piso */
+  }
+}

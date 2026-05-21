@@ -1,0 +1,164 @@
+/* --- CONTENEDOR PRINCIPAL SPLIT --- */
+.login-split-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #000;
+  margin: 0;
+}
+
+/* Lado de la imagen oculto por defecto (para celulares) */
+.login-image-side {
+  display: none; 
+}
+
+/* Lado del formulario ocupa toda la pantalla en celular */
+.login-form-side {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* --- MAGIA RESPONSIVA: PANTALLAS GRANDES (LAPTOPS/DESKTOP) --- */
+@media (min-width: 1024px) {
+  .login-image-side {
+    display: block;
+    flex: 1.2; /* Ocupa un poco más de la mitad de la pantalla */
+    /* Aquí te puse una imagen de pádel de internet como placeholder. 
+       Luego la puedes cambiar por una tuya local ej: url('/cancha.jpg') */
+    background-image: url('../fondo-login.png'); 
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-right: 2px solid #39FF14; /* Una línea neón separadora muy pro */
+  }
+
+  .image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.2), rgba(0,0,0,0.8));
+    display: flex;
+    align-items: flex-end;
+    padding: 50px;
+  }
+
+  .overlay-text {
+    color: white;
+    font-style: italic;
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+    max-width: 400px;
+  }
+
+  .login-form-side {
+    flex: 1; /* Ocupa el resto de la pantalla */
+  }
+}
+
+/* --- EL RESTO DE TUS ESTILOS FUSIÓN EXACTAMENTE IGUAL --- */
+.login-content-fusion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 340px;
+}
+
+.avatar-fusion {
+  width: 110px;
+  height: 110px;
+  background: #111;
+  border: 2px solid #39FF14;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25px;
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+}
+
+.changuito-icon { font-size: 3.5rem; }
+
+.title-fusion {
+  color: white;
+  font-style: italic;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+  margin: 0 0 35px 0;
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+}
+
+.input-group-fusion {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.input-fusion {
+  width: 100%;
+  padding: 16px 25px;
+  background-color: #111;
+  color: white;
+  border: 1px solid #333;
+  border-radius: 30px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.input-fusion:focus {
+  outline: none;
+  border-color: #39FF14;
+  box-shadow: 0 0 12px rgba(57, 255, 20, 0.2);
+  background-color: #1a1a1a;
+}
+
+.button-fusion {
+  width: 100%;
+  padding: 15px;
+  background-color: transparent;
+  color: #39FF14;
+  border: 2px solid #39FF14;
+  border-radius: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 1px;
+}
+
+.button-fusion:hover:not(:disabled) {
+  background-color: #39FF14;
+  color: #000;
+  box-shadow: 0 0 20px rgba(57, 255, 20, 0.6);
+}
+
+.forgot-fusion {
+  color: #666;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 35px;
+  transition: color 0.3s;
+}
+
+.forgot-fusion:hover { color: #39FF14; }
+
+/* .logo-img{
+  height: 150px;
+} */
+
+.logo-img {
+  width: 100%; /* Ajusta este porcentaje si la quieres más grande o chica */
+  height: 100%;
+  object-fit: contain; /* Evita que tu imagen se apachurre o deforme */
+  border-radius: 50%; /* Si tu imagen es cuadrada, esto la hace redondita */
+}
