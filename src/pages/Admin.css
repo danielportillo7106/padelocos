@@ -14,8 +14,8 @@
 
 .neon-text {
   color: #39FF14;
-  font-size: 2rem;
-  font-weight: 900;
+  font-size: 1.8rem;
+  font-weight: 800;
   margin: 0;
   text-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
 }
@@ -306,4 +306,24 @@
 .court-number {
   margin-bottom: 20px; /* Separa el título de la lista de jugadores */
   color: #39FF14; /* Un toque neón para resaltar el número */
+}
+
+.ubicacion-premium {
+  display: inline-block;
+  font-size: 1.1rem;
+  font-weight: 900;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 8px 20px;
+  border-radius: 30px;
+  /* Degradado de texto estilo cyberpunk */
+  background: linear-gradient(90deg, #3ce2a082, #21a7ae);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* Borde sutil y brillo */
+  border: 1px solid rgba(0, 243, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+  background-color: #111; /* Fondo oscuro sólido detrás del texto */
+  margin-bottom: 20px;
 }

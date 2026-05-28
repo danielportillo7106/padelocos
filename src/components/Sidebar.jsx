@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './Sidebar.css';
 
 function Sidebar() {
   const [abierto, setAbierto] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const irA = (ruta) => {
     navigate(ruta);
@@ -16,6 +17,10 @@ function Sidebar() {
     setAbierto(false); 
     navigate('/'); 
   };
+
+  if(location.pathname === '/resultados'){
+    return null;
+  }
 
   return (
     <>

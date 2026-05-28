@@ -104,10 +104,8 @@ function Admin() {
       <header className="dashboard-header">
         <div className="header-info">
           <h1 className="neon-text">JORNADA #27</h1>
-          <p>Padel San Mateo • Rey de la Cancha</p>
+          <p className='ubicacion-premium'>📍Padel San Mateo • Rey de la Cancha</p>
         </div>
-        {/* Disparador del menú */}
-        {/* <button className="btn-menu" onClick={toggleMenu}>≡</button> */}
       </header>
 
       <div className="courts-grid">
