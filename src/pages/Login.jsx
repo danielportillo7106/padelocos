@@ -55,7 +55,7 @@ function Login() {
         <form className="login-content-fusion" onSubmit={handleLogin}>
           
           <div className="avatar-fusion">
-            <img src="/logo_padelocos.png" alt="Logo Padelocos" className="logo-img"/>
+            <img src="/logo_padelocos1.svg" alt="Logo Padelocos" className="logo-img"/>
           </div>
 
           <h1 className="title-fusion">PADELOCOS</h1>

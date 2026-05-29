@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { supabase  } from '../supabase';
 import './Resultados.css';
 
 function Resultados() {
@@ -19,6 +20,59 @@ function Resultados() {
 
   const top3 = ranking.slice(0, 3);
   const resto = ranking.slice(3);
+
+  // --- LÓGICA DE REPARTO DE PUNTOS ELO ---
+  const [puntosRepartidos, setPuntosRepartidos] = useState(false);
+
+  const repartirPuntosElo = async () => {
+    if (ranking.length === 0 || puntosRepartidos) return;
+
+    try {
+      console.log("Iniciando reparto de puntos ELO...");
+      
+      for (let i = 0; i < ranking.length; i++) {
+        const jugador = ranking[i];
+        let puntosGanados = jugador.puntos * 5; // 5 puntos por cada ronda ganada
+
+        // Bonos para el podio
+        if (i === 0) puntosGanados += 30; // 1er Lugar
+        if (i === 1) puntosGanados += 20; // 2do Lugar
+        if (i === 2) puntosGanados += 10; // 3er Lugar
+
+        // 1. Obtener el ELO actual del jugador desde la base de datos
+        const { data: dataJugador, error: errorFetch } = await supabase
+            .from('jugadores')
+            .select('ranking_elo')
+            .eq('id', jugador.id)
+            .single();
+            
+        if (errorFetch) {
+            console.error(`Error al obtener ELO de ${jugador.nombre}:`, errorFetch);
+            continue; // Si falla uno, pasamos al siguiente
+        }
+
+        const eloActual = dataJugador?.ranking_elo || 0;
+        const nuevoElo = eloActual + puntosGanados;
+
+        // 2. Actualizar el jugador con el nuevo ELO
+        const { error: errorUpdate } = await supabase
+          .from('jugadores')
+          .update({ ranking_elo: nuevoElo })
+          .eq('id', jugador.id);
+
+        if (errorUpdate) {
+            console.error(`Error al actualizar ELO de ${jugador.nombre}:`, errorUpdate);
+        } else {
+            console.log(`✅ ${jugador.nombre} ha recibido ${puntosGanados} puntos ELO. Nuevo ELO: ${nuevoElo}`);
+        }
+      }
+      
+      setPuntosRepartidos(true);
+      alert("¡Los puntos ELO de esta jornada se han repartido con éxito en el Ranking! 🏆📈");
+    } catch (error) {
+      console.error("Error al repartir puntos ELO:", error);
+    }
+  };
 
   // --- LA FUNCIÓN DE INTELIGENCIA ARTIFICIAL REAL 🤖 ---
   const generarCronica = async () => {
@@ -176,7 +230,22 @@ function Resultados() {
         </div>
       )}
 
-      <button className="main-button neon-button return-btn" onClick={() => navigate('/home')}>
+      {/* Botón para repartir puntos ELO */}
+      {!puntosRepartidos && (
+        <button 
+          className="action-btn primary neon-border" 
+          onClick={repartirPuntosElo}
+          style={{marginBottom: '20px', width: '100%', maxWidth: '400px'}}
+        >
+          REPARTIR PUNTOS ELO 🏆
+        </button>
+      )}
+
+      {/* Tu botón original para volver (ahora un poco más gris si aún no repartes los puntos, o brillante si ya lo hiciste) */}
+      <button 
+        className={`main-button return-btn ${puntosRepartidos ? 'neon-button' : 'secondary'}`} 
+        onClick={() => navigate('/home')}
+      >
         CERRAR JORNADA Y VOLVER
       </button>
     </div>

@@ -1,0 +1,107 @@
+.nfc-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+.nfc-subtitle {
+  color: #888;
+  margin-bottom: 50px;
+  font-size: 1.2rem;
+}
+
+.scanner-area {
+  cursor: pointer; /* Para que sepas que le puedes dar clic en la demo */
+  margin-bottom: 40px;
+}
+
+/* Animación del Radar */
+.radar-box {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(222, 255, 154, 0.05);
+  border-radius: 50%;
+  border: 2px solid rgba(222, 255, 154, 0.2);
+}
+
+.nfc-icon {
+  font-size: 4rem;
+  z-index: 10;
+}
+
+.pulse-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #deff9a;
+  animation: radarPulse 2s infinite ease-out;
+}
+
+.pulse-ring.delay {
+  animation-delay: 1s;
+}
+
+@keyframes radarPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.status-text {
+  margin-top: 20px;
+  color: #deff9a;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Estado de Éxito */
+.success-box {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(17, 202, 160, 0.1);
+  border-radius: 50%;
+  border: 4px solid #11caa0;
+  box-shadow: 0 0 30px rgba(17, 202, 160, 0.5);
+}
+
+.success-icon {
+  font-size: 4rem;
+}
+
+.success-name {
+  color: white;
+  margin: 10px 0;
+}
+
+.success-text {
+  color: #11caa0;
+}
+
+.nfc-instructions {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px 25px;
+  border-radius: 10px;
+  max-width: 500px;
+  border-left: 4px solid #deff9a;
+}

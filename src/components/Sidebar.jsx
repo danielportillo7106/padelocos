@@ -45,6 +45,7 @@ function Sidebar() {
           <button onClick={() => irA('/home')}>🏠 Panel Principal</button>
           <button onClick={() => irA('/configurar')}>🎾 Nueva Jornada</button>
           <button onClick={() => irA('/registrar-jugador')}>👤 Nuevo Fichaje</button>
+          <button onClick={() => irA('/nfcscanner')}> NFC Lector</button>
         </div>
 
         <div className="sidebar-footer">

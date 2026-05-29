@@ -1,0 +1,104 @@
+.ranking-page {
+  background-color: #0a0a0a;
+  min-height: 100vh;
+  padding: 40px 20px;
+  color: white;
+  font-family: 'Urbanist', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.neon-title {
+  font-size: 3rem;
+  text-shadow: 0 0 10px #deff9a;
+  margin-bottom: 5px;
+}
+
+.neon-title span { color: #deff9a; }
+
+.ranking-container {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Tarjeta base */
+.ranking-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s;
+}
+
+.ranking-card:hover {
+  transform: scale(1.02);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.rank-number {
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 40px;
+  color: #888;
+}
+
+.player-info { flex-grow: 1; }
+
+.player-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.elo-badge {
+  text-align: right;
+  background: #deff9a;
+  color: black;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(222, 255, 154, 0.3);
+}
+
+.elo-label {
+  display: block;
+  font-size: 0.6rem;
+  margin-top: -3px;
+}
+
+/* Colores de Podio Estilo Clash */
+.pos-1 { border: 2px solid #ffd700; background: rgba(255, 215, 0, 0.1); }
+.pos-1 .rank-number { color: #ffd700; font-size: 2rem; }
+
+.pos-2 { border: 2px solid #c0c0c0; background: rgba(192, 192, 192, 0.1); }
+.pos-2 .rank-number { color: #c0c0c0; }
+
+.pos-3 { border: 2px solid #cd7f32; background: rgba(205, 127, 50, 0.1); }
+.pos-3 .rank-number { color: #cd7f32; }
+
+/* Botón del Home */
+.btn-ranking-neon {
+  display: inline-block;
+  padding: 15px 30px;
+  background: transparent;
+  border: 2px solid #deff9a;
+  color: #deff9a;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: bold;
+  transition: 0.3s;
+  box-shadow: 0 0 15px rgba(222, 255, 154, 0.2);
+}
+
+.btn-ranking-neon:hover {
+  background: #deff9a;
+  color: black;
+  box-shadow: 0 0 30px #deff9a;
+}

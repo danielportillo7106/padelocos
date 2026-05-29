@@ -33,14 +33,18 @@ function Home() {
             {/* <span className="subtext">Registra a alguien en el club</span> */}
             <span className="subtext">Mantenimiento de jugadores</span>
           </button>
+
+          <a 
+            href="/ranking" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="btn-ranking-neon"
+          >
+            🏆 VER RANKING GLOBAL
+          </a>
         </div>
         
-        {/* <button className="logout-btn" onClick={() => {
-          localStorage.removeItem('usuarioLogueado');
-          navigate('/');
-        }}>
-          Cerrar Sesión
-        </button> */}
+        
       </div>
     </div>
   );
