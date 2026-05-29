@@ -1,16 +1,42 @@
-# React + Vite
+# 🎾 Padelocos App - Gestión de Torneos Premium
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+¡Bienvenido al sistema definitivo para gestionar tus retas de pádel! 
+Padelocos es una aplicación web moderna diseñada para administrar jugadores, armar canchas de manera dinámica y coronar al rey de la pista con crónicas generadas por Inteligencia Artificial.
 
-Currently, two official plugins are available:
+## ✨ Características Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+* 📝 **Gestión de Plantilla:** CRUD completo para fichar nuevos talentos o dar de baja jugadores, con sincronización en tiempo real.
+* 🏟️ **Draft Automático:** Sistema inteligente de rotación para asignar jugadores a las canchas disponibles.
+* 🏆 **Podio Neón:** Visualización de resultados finales con un diseño inmersivo y medallas destacadas.
+* 🤖 **Crónicas con IA:** Integración directa con **Google Gemini** para generar resúmenes deportivos épicos y exagerados de los ganadores, listos para compartir en WhatsApp.
 
-## React Compiler
+## 🛠️ Stack Tecnológico
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Frontend:** React (Vite)
+* **Estilos:** CSS3 (Glassmorphism & Neon UI)
+* **Base de Datos & Auth:** Supabase
+* **Inteligencia Artificial:** Google Gemini API (gemini-2.5-flash)
 
-## Expanding the ESLint configuration
+## 🚀 Cómo correr el proyecto en local
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clona este repositorio:
+   \`\`\`bash
+   git clone https://github.com/danielportillo7106/padelocos-app.git
+   \`\`\`
+2. Instala las dependencias:
+   \`\`\`bash
+   npm install
+   \`\`\`
+3. Configura tus variables de entorno creando un archivo `.env` en la raíz con lo siguiente:
+   \`\`\`env
+   VITE_SUPABASE_URL=tu_url_de_supabase
+   VITE_SUPABASE_ANON_KEY=tu_llave_de_supabase
+   VITE_GEMINI_API_KEY=tu_llave_de_google_gemini
+   \`\`\`
+4. Inicia el servidor de desarrollo:
+   \`\`\`bash
+   npm run dev
+   \`\`\`
+
+---
+*Desarrollado con pasión, mucho café y voleas en la red.* 👑🔥
