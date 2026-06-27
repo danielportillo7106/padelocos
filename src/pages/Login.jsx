@@ -54,11 +54,9 @@ function Login() {
       <div className="login-form-side">
         <form className="login-content-fusion" onSubmit={handleLogin}>
           
-          <div className="avatar-fusion">
-            <img src="/logo_padelocos1.svg" alt="Logo Padelocos" className="logo-img"/>
-          </div>
+          <img src="/logo_padelocos.png" alt="Logo Padelocos" className="logo-img" style={{ backgroundColor: 'transparent', objectFit: 'contain', border: 'none' }} />
 
-          <h1 className="title-fusion">PADELOCOS</h1>
+          <h1 className="title-fusion"></h1>
           
           <div className="input-group-fusion">
             <input 

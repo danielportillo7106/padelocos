@@ -50,7 +50,7 @@ function RegistrarJugador() {
   };
 
   const darDeBaja = async (id, nombreJugador) => {
-    const confirmar = window.confirm(`¿Seguro que quieres darle salida a ${nombreJugador}? Se irá a otro club. 😢`);
+    const confirmar = window.confirm(`¿Seguro que quieres darle salida a ${nombreJugador}? 😢`);
     if (!confirmar) return;
 
     try {

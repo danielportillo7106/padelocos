@@ -152,13 +152,7 @@
 
 .forgot-fusion:hover { color: #39FF14; }
 
-/* .logo-img{
+.logo-img{
   height: 150px;
-} */
-
-.logo-img {
-  width: 100%; /* Ajusta este porcentaje si la quieres más grande o chica */
-  height: 100%;
-  object-fit: contain; /* Evita que tu imagen se apachurre o deforme */
-  border-radius: 50%; /* Si tu imagen es cuadrada, esto la hace redondita */
 }
+

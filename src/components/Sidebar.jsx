@@ -8,6 +8,13 @@ function Sidebar() {
   const location = useLocation();
 
   const irA = (ruta) => {
+
+    if (location.pathname === '/admin') {
+      const confirmar = window.confirm("¿Seguro que quieres salir? Perderás el control de las canchas.");
+      if(!confirmar){
+        return;
+      }
+    }
     navigate(ruta);
     setAbierto(false); // Cierra el menú al cambiar de pantalla
   };

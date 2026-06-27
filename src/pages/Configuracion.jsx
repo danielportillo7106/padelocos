@@ -49,7 +49,7 @@ function Configuracion() {
         .from('jornadas')
         .insert([
           { 
-            jugadores: seleccionados, // Usamos tu variable 'seleccionados'
+            jugadores: seleccionados, 
             estatus: 'En curso' 
           }
         ])
@@ -57,6 +57,9 @@ function Configuracion() {
 
       if (error) throw error;
       console.log("¡Jornada guardada en la BD!", data);
+
+      // NUEVO: Pescamos el ID que nos acaba de generar la base de datos
+      const idDeLaNuevaJornada = data[0].id;
 
       // 2. Armamos las canchas como lo tenías originalmente
       const canchasGeneradas = [];
@@ -72,8 +75,13 @@ function Configuracion() {
         indexJugador += 4;
       }
 
-      // 3. Brincamos a la pantalla de Admin con los datos listos
-      navigate('/admin', { state: { canchasGeneradas } });
+      // 3. Brincamos a la pantalla de Admin empacando las canchas Y el ID de la jornada
+      navigate('/admin', { 
+        state: { 
+          canchasGeneradas, 
+          jornadaId: idDeLaNuevaJornada // <-- ¡Aquí metemos el ID en la maleta!
+        } 
+      });
 
     } catch (error) {
       console.error("Error al guardar la jornada:", error);

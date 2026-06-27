@@ -21,56 +21,54 @@ function Resultados() {
   const top3 = ranking.slice(0, 3);
   const resto = ranking.slice(3);
 
-  // --- LÓGICA DE REPARTO DE PUNTOS ELO ---
-  const [puntosRepartidos, setPuntosRepartidos] = useState(false);
+// --- LA SÚPER FUNCIÓN  DE REAPRTO DE PUNTOS VELOZ ---
+  const [procesando, setProcesando] = useState(false);
 
-  const repartirPuntosElo = async () => {
-    if (ranking.length === 0 || puntosRepartidos) return;
+  const cerrarYRepartir = async () => {
+    if (ranking.length === 0) return;
+    
+    // Si ya le habían picado, evitamos que se duplique
+    setProcesando(true); 
 
     try {
-      console.log("Iniciando reparto de puntos ELO...");
+      console.log("Iniciando reparto paralelo de ELO...");
       
-      for (let i = 0; i < ranking.length; i++) {
-        const jugador = ranking[i];
-        let puntosGanados = jugador.puntos * 5; // 5 puntos por cada ronda ganada
+      // 1. Armamos un batallón de tareas simultáneas
+      const promesasDeActualizacion = ranking.map(async (jugador, i) => {
+        let puntosGanados = jugador.puntos * 5;
+        if (i === 0) puntosGanados += 30;
+        if (i === 1) puntosGanados += 20;
+        if (i === 2) puntosGanados += 10;
 
-        // Bonos para el podio
-        if (i === 0) puntosGanados += 30; // 1er Lugar
-        if (i === 1) puntosGanados += 20; // 2do Lugar
-        if (i === 2) puntosGanados += 10; // 3er Lugar
-
-        // 1. Obtener el ELO actual del jugador desde la base de datos
-        const { data: dataJugador, error: errorFetch } = await supabase
+        // Buscamos su ELO actual
+        const { data: dataJugador } = await supabase
             .from('jugadores')
             .select('ranking_elo')
             .eq('id', jugador.id)
             .single();
             
-        if (errorFetch) {
-            console.error(`Error al obtener ELO de ${jugador.nombre}:`, errorFetch);
-            continue; // Si falla uno, pasamos al siguiente
-        }
-
         const eloActual = dataJugador?.ranking_elo || 0;
         const nuevoElo = eloActual + puntosGanados;
 
-        // 2. Actualizar el jugador con el nuevo ELO
-        const { error: errorUpdate } = await supabase
+        // Mandamos a actualizar (Retorna la promesa, no esperamos aquí)
+        return supabase
           .from('jugadores')
           .update({ ranking_elo: nuevoElo })
           .eq('id', jugador.id);
+      });
 
-        if (errorUpdate) {
-            console.error(`Error al actualizar ELO de ${jugador.nombre}:`, errorUpdate);
-        } else {
-            console.log(`✅ ${jugador.nombre} ha recibido ${puntosGanados} puntos ELO. Nuevo ELO: ${nuevoElo}`);
-        }
-      }
+      // 2. ¡Disparamos las 28 tareas AL MISMO TIEMPO y esperamos a que acaben juntas! 🚀
+      await Promise.all(promesasDeActualizacion);
       
-      setPuntosRepartidos(true);
-      alert("¡Los puntos ELO de esta jornada se han repartido con éxito en el Ranking! 🏆📈");
+      alert("¡Puntos ELO repartidos a la velocidad de la luz! 🏆⚡");
+      
+      // 3. Ya que terminó, lo mandamos al Home automáticamente
+      navigate('/home');
+
     } catch (error) {
-      console.error("Error al repartir puntos ELO:", error);
+      console.error("Error al repartir puntos:", error);
+      alert("Hubo un problema de conexión al repartir los puntos.");
+      setProcesando(false);
     }
   };
 
@@ -231,25 +229,68 @@ function Resultados() {
       )}
 
       {/* Botón para repartir puntos ELO */}
-      {!puntosRepartidos && (
-        <button 
-          className="action-btn primary neon-border" 
-          onClick={repartirPuntosElo}
-          style={{marginBottom: '20px', width: '100%', maxWidth: '400px'}}
-        >
-          REPARTIR PUNTOS ELO 🏆
-        </button>
-      )}
-
-      {/* Tu botón original para volver (ahora un poco más gris si aún no repartes los puntos, o brillante si ya lo hiciste) */}
       <button 
-        className={`main-button return-btn ${puntosRepartidos ? 'neon-button' : 'secondary'}`} 
-        onClick={() => navigate('/home')}
+        className="main-button neon-button return-btn" 
+        onClick={cerrarYRepartir}
+        disabled={procesando}
       >
-        CERRAR JORNADA Y VOLVER
+        {procesando ? 'GUARDANDO RESULTADOS...' : 'REPARTIR PUNTOS Y CERRAR 🏆'}
       </button>
     </div>
   );
 }
 
 export default Resultados;
+
+
+
+
+
+
+
+// try {
+  //     console.log("Iniciando reparto de puntos ELO...");
+      
+  //     for (let i = 0; i < ranking.length; i++) {
+  //       const jugador = ranking[i];
+  //       let puntosGanados = jugador.puntos * 5; // 5 puntos por cada ronda ganada
+
+  //       // Bonos para el podio
+  //       if (i === 0) puntosGanados += 30; // 1er Lugar
+  //       if (i === 1) puntosGanados += 20; // 2do Lugar
+  //       if (i === 2) puntosGanados += 10; // 3er Lugar
+
+  //       // 1. Obtener el ELO actual del jugador desde la base de datos
+  //       const { data: dataJugador, error: errorFetch } = await supabase
+  //           .from('jugadores')
+  //           .select('ranking_elo')
+  //           .eq('id', jugador.id)
+  //           .single();
+            
+  //       if (errorFetch) {
+  //           console.error(`Error al obtener ELO de ${jugador.nombre}:`, errorFetch);
+  //           continue; // Si falla uno, pasamos al siguiente
+  //       }
+
+  //       const eloActual = dataJugador?.ranking_elo || 0;
+  //       const nuevoElo = eloActual + puntosGanados;
+
+  //       // 2. Actualizar el jugador con el nuevo ELO
+  //       const { error: errorUpdate } = await supabase
+  //         .from('jugadores')
+  //         .update({ ranking_elo: nuevoElo })
+  //         .eq('id', jugador.id);
+
+  //       if (errorUpdate) {
+  //           console.error(`Error al actualizar ELO de ${jugador.nombre}:`, errorUpdate);
+  //       } else {
+  //           console.log(`✅ ${jugador.nombre} ha recibido ${puntosGanados} puntos ELO. Nuevo ELO: ${nuevoElo}`);
+  //       }
+  //     }
+      
+  //     setPuntosRepartidos(true);
+  //     alert("¡Los puntos ELO de esta jornada se han repartido con éxito en el Ranking! 🏆📈");
+  //   } catch (error) {
+  //     console.error("Error al repartir puntos ELO:", error);
+  //   }
+  // };

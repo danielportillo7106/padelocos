@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { supabase } from '../supabase';
 import { useNavigate, useLocation } from 'react-router-dom'; // <--- Importar useLocation
 import './Admin.css';
 
@@ -8,7 +9,7 @@ function Admin() {
   
   // Tomamos las canchas generadas. Si alguien entra directo a /admin por error, evitamos que crashee
   const canchasIniciales = location.state?.canchasGeneradas || []; 
-
+  const jornadaId = location.state?.jornadaId || 27;
   const [canchas, setCanchas] = useState(canchasIniciales);
   
   // Calculamos las victorias iniciales basándonos en los jugadores reales
@@ -85,13 +86,31 @@ function Admin() {
 
   // Busca esta función en Admin.jsx y reemplázala:
   //const irAResultados = () => navigate('/resultados', { state: { victorias } });
-  const irAResultados = () => {
+const irAResultados = async () => {
     const confirmar = window.confirm(
       "¿Estás seguro de que quieres finalizar la jornada? Ya no podrás registrar más rondas para esta jornada."
     );
 
     if (confirmar) {
-      navigate('/resultados', { state: { victorias } });
+      try {
+        // 1. Le avisamos a Supabase que la jornada terminó
+        const { error } = await supabase
+          .from('jornadas') // <-- OJO: Confirma que tu tabla se llame así
+          .update({ estatus: 'Finalizada' }) // <-- Confirma el nombre de tu columna
+          .eq('id', jornadaId); // <-- Aquí necesitamos el ID real de la jornada
+
+        if (error) {
+          console.error("Error al actualizar Supabase:", error);
+          alert("Hubo un error al intentar finalizar la jornada en la base de datos.");
+          return; // Detenemos la ejecución si hay error
+        }
+
+        // 2. Si todo salió bien, viajamos a la pantalla de resultados
+        navigate('/resultados', { state: { victorias } });
+
+      } catch (err) {
+        console.error("Error inesperado:", err);
+      }
     }
   };
 
@@ -102,8 +121,11 @@ function Admin() {
     <div className="dashboard-container">
 
       <header className="dashboard-header">
+        <button className="back-arrow-btn" onClick={() => navigate('/home')}>
+          ← VOLVER
+        </button>
         <div className="header-info">
-          <h1 className="neon-text">JORNADA #27</h1>
+          <h1 className="neon-text">JORNADA #{jornadaId}</h1>
           <p className='ubicacion-premium'>📍Padel San Mateo • Rey de la Cancha</p>
         </div>
       </header>

@@ -12,6 +12,7 @@
 .config-header {
   text-align: center;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .counter {
@@ -167,4 +168,19 @@ button.disabled {
 .btn-rey:hover {
   transform: translateY(-3px) scale(1.02);
   box-shadow: 0 0 25px rgba(255, 215, 0, 0.8);
+}
+
+.back-arrow-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Montserrat', sans-serif;
 }

@@ -23,7 +23,7 @@
 /* Cuadrícula responsiva para las 7 canchas */
 .courts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
   margin-bottom: 100px; /* Espacio para el footer fijo */
 }
@@ -54,12 +54,24 @@
   margin: 10px 0;
 }
 
-.player-slot {
+/* .player-slot {
   background: #262626;
   padding: 8px;
   border-radius: 6px;
   font-size: 0.8rem;
   text-align: center;
+} */
+
+.player-slot {
+  background: #262626;
+  padding: 6px;
+  border-radius: 6px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1; 
+  min-width: 0;
 }
 
 .vs-divider {
@@ -155,6 +167,8 @@
   display: flex;
   gap: 8px;
   justify-content: center;
+  width: 100%;       /* Ocupa todo el ancho disponible */
+  table-layout: fixed; /* Fuerza a que respeten el espacio */
 }
 
 .player-slot {
@@ -165,106 +179,37 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1; /* Para que ambos jugadores ocupen la mitad del espacio */
+  flex: 1; 
+  width: 50%;        /* Cada uno la mitad exacta del contenedor */
+  min-width: 0;      /* Evita que el contenido empuje los bordes */
+  overflow: hidden;  /* Si algo se sale por un pixel, lo esconde */
 }
 
 .player-id {
   color: #39FF14; /* Tu verde fosforíloco */
-  font-size: 0.65rem;
-  font-weight: 900;
+  font-size: 0.7rem;
+  font-weight: 700;
   margin-bottom: 2px;
 }
 
-.player-name {
+/* .player-name {
   color: white;
   font-size: 0.75rem;
   font-weight: bold;
-}
+} */
 
-/* ===== MENÚ LATERAL HAMBURGUESA ===== */
-.menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 99;
-  backdrop-filter: blur(2px);
-}
-
-.sidebar-menu {
-  position: fixed;
-  top: 0;
-  right: -280px; /* Escondido por defecto fuera de la pantalla */
-  width: 250px;
-  height: 100vh;
-  background: #111;
-  border-left: 1px solid #222;
-  z-index: 100;
-  transition: right 0.3s ease-in-out;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-}
-
-.sidebar-menu.open {
-  right: 0; /* Al agregar esta clase, el menú se desliza hacia adentro */
-}
-
-.close-menu-btn {
-  align-self: flex-end;
-  background: none;
-  border: none;
+.player-name {
   color: white;
-  font-size: 1.5rem;
-  cursor: pointer;
-  margin-bottom: 30px;
-  padding: 5px 10px;
-}
-
-.menu-links {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  flex-grow: 1; /* Permite que el contenedor crezca */
-  padding-bottom: 40px;
-}
-
-.menu-links a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.1rem;
+  font-size: 0.2rem; 
   font-weight: bold;
-  padding: 10px 0;
-  border-bottom: 1px solid transparent;
-  transition: all 0.2s;
+  width: 100%;
+  line-height: 1.2;
+  /* LAS TRES LÍNEAS MÁGICAS: */
+  white-space: normal;  /* Permite saltar de renglón si es necesario */
+  word-break: keep-all; /* 1. ¡PROHIBIDO romper palabras a la mitad! */
+  overflow-wrap: normal;/* 2. Respeta el flujo normal del texto */
+  display: block;
 }
-
-.menu-links a:hover {
-  color: #39FF14;
-  border-bottom: 1px solid #39FF14;
-  padding-left: 10px; /* Pequeño efecto de movimiento */
-}
-
-.menu-spacer {
-  margin-top: auto;
-  height: 20px;
-}
-
-.menu-links .logout-link {
-  color: #ff4444;
-  margin-bottom: 20px; /* Separación extra del borde inferior */
-  padding: 15px 0;    /* Área de clic más grande y cómoda */
-}
-
-.menu-links .logout-link:hover {
-  color: #ff6666;
-  border-bottom: 1px solid #ff6666;
-}
-
-
 
 .btn-menu {
   background: transparent;
@@ -318,12 +263,12 @@
   padding: 8px 20px;
   border-radius: 30px;
   /* Degradado de texto estilo cyberpunk */
-  background: linear-gradient(90deg, #3ce2a082, #21a7ae);
+  background: linear-gradient(90deg, #ffffff, #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   /* Borde sutil y brillo */
-  border: 1px solid rgba(0, 243, 255, 0.3);
-  box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: 0 0 15px rgba(183, 201, 202, 0.1);
   background-color: #111; /* Fondo oscuro sólido detrás del texto */
   margin-bottom: 20px;
 }
